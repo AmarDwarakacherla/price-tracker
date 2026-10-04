@@ -9,9 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
 public class ProductController {
@@ -31,6 +32,17 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id){
         return ResponseEntity.ok(productService.getProductById(id));
+    }
+
+    @PutMapping("/{id}/price")
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id,
+                                                 @RequestParam BigDecimal newPrice){
+        return ResponseEntity.ok(productService.updateProduct(id, newPrice));
+    }
+
+    @PostMapping("/{id}/check-price")
+    public ResponseEntity<Product> checkPrice(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.checkPrice(id));
     }
 
 

@@ -22,6 +22,8 @@ public class Product {
 
     private String productName;
 
+
+    @Column(columnDefinition = "TEXT")
     private String productUrl;
 
     private BigDecimal currentPrice;
